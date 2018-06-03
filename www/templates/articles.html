@@ -1,0 +1,27 @@
+<ion-view view-title="News Articles">
+        <ion-content>
+
+<div class="list card" ng-repeat="article in articles">
+
+    <div class="item item-avatar">
+      
+      <h2>{{article.author}}</h2>
+      <p>{{article.publishedAt}}</p>
+    </div>
+  
+    <div class="item item-body">
+            <h1>{{article.title}}</h1>
+      <img class="full-image" ng-src="{{article.urlToImage}}">
+      <p>
+        {{article.description}}
+      </p>
+      <p>
+        <a href="{{article.url}}" class="subdued">Read More</a>
+        <a href="#" class="subdued">5 Comments</a>
+      </p>
+    </div>
+  
+  </div>
+
+  </ion-content>
+  </ion-view>

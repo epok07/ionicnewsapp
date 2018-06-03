@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, newsAPIservice) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -42,6 +42,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistsCtrl', function($scope) {
+
   $scope.playlists = [
     { title: 'Reggae', id: 1 },
     { title: 'Chill', id: 2 },
@@ -50,7 +51,43 @@ angular.module('starter.controllers', [])
     { title: 'Rap', id: 5 },
     { title: 'Cowbell', id: 6 }
   ];
+
+   
+})
+
+.controller('SourcesCtrl', function($scope, newsAPIservice) {
+
+   /* newsAPIservice.getSources().success(function (data) {
+    //Dig into the responde to get the relevant data
+    $scope.sources = data;
+    console.log(data[0]);
+   }); */
+
+   $scope.sources = newsAPIservice.getSources().sources;
+   console.log($scope.sources[0]);
+
+   newsAPIservice.getArticles().success(function (data) {
+    //Dig into the responde to get the relevant data
+    $scope.articles = data;
+    console.log(data[0]);
+   });
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
+})
+
+.controller('ArticleCtrl', function($scope, $stateParams, newsAPIservice) {
+})
+
+.controller('ArticlesCtrl', function($scope, $stateParams, newsAPIservice) {
+
+  newsAPIservice.getArticles().success(function (data) {
+    //Dig into the responde to get the relevant data
+    $scope.articles = data;
+    console.log(data[0]);
+   });
+
+   $scope.articles = newsAPIservice.demoArticles().articles;
+   
+
 });
